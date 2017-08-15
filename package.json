@@ -1,0 +1,12 @@
+{
+  "name": "wikidata-graphql",
+  "version": "0.0.1",
+  "description": "graphql api proxy for wikidata",
+  "main": "index.js",
+  "repository": {},
+  "author": "Sean Lee",
+  "license": "MIT",
+  "dependencies": {
+    "graphql": "^0.10.5"
+  }
+}
