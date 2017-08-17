@@ -1,4 +1,9 @@
+# build files
+dist/
+
+# emacs
 *~
+
 # Logs
 logs
 *.log
