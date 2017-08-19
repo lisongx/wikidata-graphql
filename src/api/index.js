@@ -6,12 +6,26 @@ class Entity {
   constructor(rawData) {
     this.rawData = rawData
     this.id = rawData.id
+    this.labels = rawData.labels
+    this.claims = rawData.claims
   }
 
   label({lang}) {
-    const label = this.rawData.labels[lang]
+    const label = this.labels[lang]
     return label && label.value;
   }
+
+  property({id}) {
+    const value = this.claims[id]
+    if (value) {
+      const mainsnak = value[0].mainsnak;
+      if (mainsnak.datatype === "wikibase-item") {
+        const itemId = mainsnak.datavalue.value.id;
+        return client.getEntity(itemId)
+      }
+    }
+  }
+
 }
 
 

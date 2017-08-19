@@ -2,7 +2,7 @@ import {
   GraphQLObjectType, GraphQLString, GraphQLList, GraphQLNonNull
 } from 'graphql'
 
-const EntityType = new GraphQLObjectType({
+let EntityType = new GraphQLObjectType({
   name: 'Entity',
   description: `Wikidata entity.`,
   fields: () => ({
@@ -19,9 +19,7 @@ const EntityType = new GraphQLObjectType({
       }
     },
     property: {
-      type: new GraphQLList(EntityType),
-      resolve() {
-      },
+      type: EntityType,
       args: {
         id: {
           name: 'id',

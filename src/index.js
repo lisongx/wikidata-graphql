@@ -5,12 +5,19 @@ import schema from "./schema"
 
 import { graphql, buildSchema } from 'graphql'
 
-client.getEntity('Q42').then( (d) => {
-  console.log('label', d.id, d.label({lang: 'zh'}))
-})
+const query = `
+{
+  entity(id: "Q42") {
+    id
+    label(lang: "en")
+    property(id: "P31") {
+        id
+        label(lang: "en")
+    }
+  }
+}
+`
 
-
-// // Run the GraphQL query '{ hello }' and print out the response
-// graphql(schema, '{ hello }', root).then((response) => {
-//   console.log(response);
-// });
+graphql(schema, query).then((response) => {
+  console.log(response.data);
+});
