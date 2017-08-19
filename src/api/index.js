@@ -2,33 +2,6 @@ import wdk from "wikidata-sdk"
 import axios from "axios"
 
 
-class Entity {
-  constructor(rawData) {
-    this.rawData = rawData
-    this.id = rawData.id
-    this.labels = rawData.labels
-    this.claims = rawData.claims
-  }
-
-  label({lang}) {
-    const label = this.labels[lang]
-    return label && label.value;
-  }
-
-  property({id}) {
-    const value = this.claims[id]
-    if (value) {
-      const mainsnak = value[0].mainsnak;
-      if (mainsnak.datatype === "wikibase-item") {
-        const itemId = mainsnak.datavalue.value.id;
-        return client.getEntity(itemId)
-      }
-    }
-  }
-
-}
-
-
 class WikiClient {
   constructor() {
     this.format = "json"
@@ -54,8 +27,47 @@ class WikiClient {
       format: this.format,
     });
   }
-
 }
 
 const client = new WikiClient()
+
+class Entity {
+  constructor(rawData) {
+    this.rawData = rawData
+    this.id = rawData.id
+    this.labels = rawData.labels
+    this.claims = rawData.claims
+  }
+
+  label({lang}) {
+    const label = this.labels[lang]
+    return label && label.value
+  }
+
+  property({id}) {
+    const value = this.claims[id]
+    if (value) {
+      return this._processClaimItems(value)
+    }
+  }
+
+  _processClaimItems(value) {
+    return value.map((item) => {
+      return this._processClaimItem(item)
+    });
+  }
+
+  _processClaimItem(item) {
+    // TODO: dealing with other types
+    const mainsnak = item.mainsnak;
+    if (mainsnak.datatype === "wikibase-item") {
+      const itemId = mainsnak.datavalue.value.id
+      return client.getEntity(itemId)
+    }
+  }
+
+}
+
+
+
 export default client

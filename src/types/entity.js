@@ -25,7 +25,7 @@ let EntityType = new GraphQLObjectType({
       // And sometimes the property have values too:
       // for example, spouse (P26) can also have start time, end time
       // And they all can have multiple references
-      type: EntityType,
+      type: new GraphQLList(EntityType),
       args: {
         id: {
           name: 'id',
