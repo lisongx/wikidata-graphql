@@ -9,10 +9,13 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-runtime": "^6.25.0",
+    "express": "^4.15.4",
+    "express-graphql": "^0.6.7",
     "graphql": "^0.10.5",
     "wikidata-sdk": "^5.2.2"
   },
   "scripts": {
+    "start": "npm run build; node dist/index.js",
     "build": "babel --out-dir dist src",
     "test": "npm run build; node dist/index.js"
   },

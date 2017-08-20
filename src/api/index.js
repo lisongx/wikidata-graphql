@@ -60,12 +60,31 @@ class Entity {
   _processClaimItem(item) {
     // TODO: dealing with other types
     const mainsnak = item.mainsnak;
-    if (mainsnak.datatype === "wikibase-item") {
-      const itemId = mainsnak.datavalue.value.id
-      return client.getEntity(itemId)
+    return {
+      mainsnak: this._processMainSnak(mainsnak)
     }
   }
 
+  _processMainSnak(mainsnak){
+    const snaktype = "text"
+    switch (mainsnak.datatype) {
+      case "wikibase-item":
+        const itemId = mainsnak.datavalue.value.id
+        return client.getEntity(itemId)
+        break;
+      case "external-id":
+        // TODO: need its own type
+        return { value: mainsnak.datavalue.value }
+        break;
+      case "time":
+        return { value: mainsnak.datavalue.value.time }
+        break;
+      case "string":
+        return { value: mainsnak.datavalue.value }
+      default:
+        return { value: mainsnak.datavalue.value }
+    }
+  }
 }
 
 

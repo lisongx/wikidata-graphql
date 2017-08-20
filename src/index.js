@@ -1,27 +1,16 @@
-import client from "./api"
-import entity from "./types/entity"
+import express from 'express'
+import graphqlHTTP from 'express-graphql'
+
 import schema from "./schema"
 
 
-import { graphql, buildSchema } from 'graphql'
+const app = express()
 
-const query = `
-{
-  entity(id: "Q5") {
-    id
-    label(lang: "en")
-    property(id: "P279") {
-        id
-        label(lang: "en")
-        property(id: "P279") {
-            id
-            label(lang: "en")
-        }
-    }
-  }
-}
-`
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  graphiql: true,
+}))
 
-graphql(schema, query).then((response) => {
-  console.log(JSON.stringify(response.data, null, 4));
-});
+app.listen(4000)
+
+console.log('Running a GraphQL API server at http://localhost:4000/graphql')
