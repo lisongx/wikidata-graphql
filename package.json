@@ -2,7 +2,7 @@
   "name": "wikidata-graphql",
   "version": "0.0.1",
   "description": "graphql api proxy for wikidata",
-  "main": "src/index.js",
+  "main": "index.js",
   "repository": {},
   "author": "Sean Lee",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "wikidata-sdk": "^5.2.2"
   },
   "scripts": {
-    "start": "npm run build; node dist/index.js",
+    "dev": "babel-node src/index.js",
+    "start": "node index.js",
     "build": "babel --out-dir dist src",
     "test": "npm run build; node dist/index.js"
   },
