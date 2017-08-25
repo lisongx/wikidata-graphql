@@ -14,7 +14,7 @@ const query = `
 const url =
   `https://query.wikidata.org/sparql?query=${encodeURIComponent(query)}`
 
-const resultPath = './src/property_config.json'
+const resultPath = './src/config.json'
 
 const processData = (data) => {
   const items = data['results']['bindings']
@@ -29,7 +29,8 @@ const processData = (data) => {
 
 axios.get(`https://query.wikidata.org/sparql?query=${encodeURIComponent(query)}`)
   .then(function(response) {
-    console.log("get property")
-    const config = processData(response.data)
+    const config = {
+        property: processData(response.data),
+    }
     fs.writeFileSync(resultPath, JSON.stringify(config));
   });

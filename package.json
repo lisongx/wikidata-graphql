@@ -18,7 +18,7 @@
     "dev": "babel-node src/index.js",
     "start": "node index.js",
     "build": "npm run gen_config; npm run compile;",
-    "gen_config": "node scripts/get_all_property.js",
+    "gen_config": "node scripts/gen_config.js",
     "compile": "babel --out-dir dist src",
     "test": "npm run build; node dist/index.js"
   },

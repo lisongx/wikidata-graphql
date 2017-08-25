@@ -3,6 +3,7 @@ import {
   GraphQLUnionType
 } from 'graphql'
 
+import config from "../config.json"
 
 
 // TODO: add qualiter/reference
