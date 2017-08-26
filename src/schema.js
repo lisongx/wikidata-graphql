@@ -1,7 +1,7 @@
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
-import EntityType from './types/entity'
 
-import client from "./api"
+import EntityType from './types/entity'
+import itemLoader from './dataloader'
 
 export default new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -15,7 +15,7 @@ requests can be made.`,
           id: { type: GraphQLString }
         },
         resolve: (_, {id}) => {
-          return client.getEntity(id);
+          return itemLoader.load(id);
         },
       }
     })
