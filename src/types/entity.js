@@ -5,7 +5,7 @@ import {
 } from 'graphql'
 
 import {remove as removeDiacritics } from 'diacritics'
-import config from "./../config.json"
+import config from "./../../config.json"
 
 
 // TODO: add qualiter/reference
