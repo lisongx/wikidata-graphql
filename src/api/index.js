@@ -72,17 +72,15 @@ class Entity {
         const itemId = mainsnak.datavalue.value.id
         return client.getEntity(itemId)
         break;
-      case "external-id":
-        // TODO: need its own type
-        return { value: mainsnak.datavalue.value }
-        break;
       case "time":
-        return { value: mainsnak.datavalue.value.time }
+        // TODO: add a time type
+        return mainsnak.datavalue.value.time.toString()
         break;
+      case "external-id":
       case "string":
-        return { value: mainsnak.datavalue.value }
+        return mainsnak.datavalue.value
       default:
-        return { value: mainsnak.datavalue.value }
+        return mainsnak.datavalue.value
     }
   }
 }
