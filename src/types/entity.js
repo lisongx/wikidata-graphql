@@ -45,7 +45,6 @@ const WikiDataValueType = new GraphQLUnionType({
   description: `An wikidata value type`,
   types: [ EntityType, WikiDataStringType ],
   resolveType(value) {
-    console.log('resolve type', value)
     if (typeof value == 'string') {
       return WikiDataStringType
     }
