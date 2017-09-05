@@ -13,5 +13,5 @@ app.use('/graphql', graphqlHTTP({
 
 app.listen(4000);
 
-
 export default app;
+export {app, schema};
