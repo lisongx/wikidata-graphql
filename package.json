@@ -21,6 +21,8 @@
     "dev": "babel-node src/index.js",
     "start": "node dist/index.js",
     "build": "npm run compile;",
+    // for heroku
+    "postinstall": "npm run compile;",
     "gen_config": "node scripts/gen_config.js",
     "compile": "babel --out-dir dist src",
     "test": "npm run build; node dist/index.js"
