@@ -6,7 +6,7 @@ import itemLoader from './dataloader'
 export default new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
-    description: `The query root, from which multiple types of MusicBrainz
+    description: `The query root, from which multiple types of Wikidata
 requests can be made.`,
     fields: () => ({
       entity: {

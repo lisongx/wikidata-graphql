@@ -131,6 +131,7 @@ EntityType = new GraphQLObjectType({
  description: `Wikidata entity.`,
  fields: () => Object.assign({
    id: {
+     description: `Wikidata's item id, for exampe Q42.`,
      type: GraphQLString
    },
    label: {
